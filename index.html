@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Focus - ADHD Task Manager</title>
     
     <!-- Firebase SDK -->
@@ -1378,6 +1381,243 @@
             font-size: 14px;
             color: var(--text-secondary);
         }
+
+        /* Mobile Navigation (hidden on desktop) */
+        .mobile-nav {
+            display: none;
+        }
+
+        .mobile-page {
+            display: none;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            /* Hide desktop layout */
+            .main-grid {
+                display: none !important;
+            }
+
+            .stats-sidebar {
+                display: none !important;
+            }
+
+            .insights-toggle {
+                display: none !important;
+            }
+
+            /* Show mobile pages */
+            .mobile-page {
+                display: none;
+                padding: 12px;
+                padding-bottom: 80px;
+                min-height: calc(100vh - 80px);
+            }
+
+            .mobile-page.active {
+                display: block;
+            }
+
+            /* Mobile Navigation */
+            .mobile-nav {
+                display: flex !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(20px);
+                border-top: 1px solid rgba(0,0,0,0.1);
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+                padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+                z-index: 1000;
+                justify-content: space-around;
+            }
+
+            .mobile-nav-item {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 6px 4px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.2s;
+                border: none;
+                background: transparent;
+                font-size: 10px;
+                color: var(--text-tertiary);
+                font-weight: 600;
+            }
+
+            .mobile-nav-item.active {
+                background: rgba(0, 122, 255, 0.1);
+                color: var(--primary);
+            }
+
+            .mobile-nav-icon {
+                font-size: 20px;
+                margin-bottom: 2px;
+            }
+
+            /* Smaller mobile elements */
+            .cat-logo {
+                top: 10px;
+                left: 10px;
+                font-size: 24px;
+            }
+
+            .cat-speech-bubble {
+                top: 45px;
+                left: 10px;
+                right: 10px;
+                max-width: calc(100vw - 20px);
+                padding: 16px;
+            }
+
+            .user-info {
+                margin: 6px auto 6px !important;
+                padding: 6px 12px !important;
+                font-size: 12px !important;
+            }
+
+            .user-avatar {
+                width: 24px !important;
+                height: 24px !important;
+            }
+
+            .sync-status {
+                font-size: 11px !important;
+                margin-top: 6px !important;
+                margin-bottom: 8px !important;
+            }
+
+            /* Mobile task cards */
+            .mobile-page .task-card {
+                padding: 12px;
+                margin-bottom: 8px;
+                border-radius: 12px;
+            }
+
+            .mobile-page .task-title {
+                font-size: 13px;
+            }
+
+            .mobile-page .task-meta {
+                font-size: 10px;
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .mobile-page .task-actions {
+                gap: 4px;
+            }
+
+            .mobile-page .btn-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .mobile-page .urgency-badge {
+                padding: 4px 8px;
+                font-size: 9px;
+                margin-bottom: 8px;
+            }
+
+            .mobile-page h2 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .mobile-page h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            /* Mobile forms */
+            .mobile-page .form-group {
+                margin-bottom: 10px;
+            }
+
+            .mobile-page label {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+
+            .mobile-page input,
+            .mobile-page select,
+            .mobile-page textarea {
+                font-size: 16px !important; /* Prevent iOS zoom */
+                padding: 9px 11px;
+                min-height: 38px;
+                border-radius: 8px;
+            }
+
+            .mobile-page textarea {
+                min-height: 60px;
+            }
+
+            .mobile-page button {
+                font-size: 13px;
+                padding: 9px 16px;
+                border-radius: 8px;
+            }
+
+            .mobile-page small {
+                font-size: 10px;
+            }
+
+            /* Mobile stats */
+            .mobile-page .stat-card-small {
+                padding: 10px;
+                margin-bottom: 8px;
+                border-radius: 10px;
+            }
+
+            .mobile-page .stat-number-small {
+                font-size: 18px;
+            }
+
+            .mobile-page .stat-label-small {
+                font-size: 9px;
+            }
+
+            /* Mobile energy selector */
+            .mobile-page .energy-selector {
+                gap: 6px;
+            }
+
+            .mobile-page .energy-option {
+                padding: 10px 6px;
+                font-size: 11px;
+            }
+
+            .mobile-page .energy-option div:first-child {
+                font-size: 20px;
+            }
+
+            /* Mobile insights */
+            .insight-item {
+                margin-bottom: 12px;
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .insight-title {
+                font-size: 12px;
+            }
+
+            .insight-text {
+                font-size: 11px;
+            }
+
+            .running-timer-display {
+                bottom: 70px;
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1404,6 +1644,12 @@
 
     <!-- Main App -->
     <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Update Available Banner -->
+        <div id="updateBanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #007AFF, #0051D5); color: white; padding: 12px 20px; text-align: center; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            <span style="font-size: 14px; font-weight: 600;">🎉 New version available!</span>
+            <button onclick="location.reload(true)" style="margin-left: 12px; background: white; color: #007AFF; border: none; padding: 6px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">Refresh Now</button>
+        </div>
+        
         <div class="cat-logo" id="catLogo">🐱</div>
         
         <!-- Floating Cat Speech Bubble -->
@@ -1622,6 +1868,132 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mobile Pages (shown only on mobile) -->
+        <!-- Tasks Page -->
+        <div class="mobile-page active" id="mobileTasks">
+            <h2>My Tasks</h2>
+            <div class="tasks-container" id="mobileTasksContainer"></div>
+        </div>
+
+        <!-- Add Task Page -->
+        <div class="mobile-page" id="mobileAddTask">
+            <h2>Add Task</h2>
+            <form id="mobileTaskForm">
+                <div class="form-group">
+                    <label>Task Name</label>
+                    <input type="text" id="mobileTaskName" required placeholder="What needs to be done?">
+                </div>
+                <div class="form-group">
+                    <label>Sprint Category</label>
+                    <select id="mobileSprintCategory" required>
+                        <option value="urgent">Sprint 1: Urgent</option>
+                        <option value="deadlines">Sprint 2: Deadlines</option>
+                        <option value="admin">Sprint 3: Admin</option>
+                        <option value="creative">Sprint 4: Creative</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project (optional)</label>
+                    <input type="text" id="mobileProjectName" placeholder="e.g., Video Production" list="mobileProjectList">
+                    <datalist id="mobileProjectList"></datalist>
+                </div>
+                <div class="form-group">
+                    <label>Final Deadline</label>
+                    <input type="date" id="mobileFinalDeadline" required>
+                </div>
+                <div class="form-group">
+                    <label>Lead Days</label>
+                    <input type="number" id="mobileLeadDays" min="0" value="0" placeholder="0">
+                    <small>Days before deadline to complete this</small>
+                </div>
+                <div class="form-group">
+                    <label>Estimated Time (minutes)</label>
+                    <input type="number" id="mobileEstimatedTime" min="5" step="5" placeholder="30">
+                </div>
+                <div class="form-group">
+                    <label>Dependencies (optional)</label>
+                    <input type="text" id="mobileDependencies" placeholder="Task names separated by commas" list="mobileTasksList">
+                    <datalist id="mobileTasksList"></datalist>
+                    <small>Enter multiple task names separated by commas</small>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="mobileTaskNotes" placeholder="Additional details..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Add Task</button>
+            </form>
+        </div>
+
+        <!-- Stats Page -->
+        <div class="mobile-page" id="mobileStats">
+            <h2>📊 Statistics</h2>
+            <div class="stat-card-small">
+                <div class="stat-number-small" id="mobileTotalTasks">0</div>
+                <div class="stat-label-small">Total Tasks</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-number-small" id="mobileUrgentTasks">0</div>
+                <div class="stat-label-small">Urgent Today</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-number-small" id="mobileCompletedTasks">0</div>
+                <div class="stat-label-small">Completed</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-number-small" id="mobileCompletionRate">0%</div>
+                <div class="stat-label-small">Success Rate</div>
+            </div>
+            <div class="stat-card-small">
+                <div class="stat-number-small" id="mobileAvgAccuracy">--</div>
+                <div class="stat-label-small">Time Accuracy</div>
+            </div>
+        </div>
+
+        <!-- Energy Page -->
+        <div class="mobile-page" id="mobileEnergy">
+            <h2>⚡ Energy Level</h2>
+            <h3>Current Energy Level</h3>
+            <div class="energy-selector">
+                <div class="energy-option" onclick="setEnergy('low')" id="mobileEnergyLow">
+                    <div>😴</div>
+                    <div>Low</div>
+                </div>
+                <div class="energy-option active" onclick="setEnergy('medium')" id="mobileEnergyMedium">
+                    <div>😐</div>
+                    <div>Medium</div>
+                </div>
+                <div class="energy-option" onclick="setEnergy('high')" id="mobileEnergyHigh">
+                    <div>⚡</div>
+                    <div>High</div>
+                </div>
+            </div>
+            <div id="mobileEnergyRecommendation" style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; padding: 12px; background: var(--gray-1); border-radius: 8px;"></div>
+        </div>
+
+        <!-- Mobile Bottom Navigation -->
+        <nav class="mobile-nav">
+            <button class="mobile-nav-item active" onclick="showMobilePage('tasks')">
+                <div class="mobile-nav-icon">✓</div>
+                <div>Tasks</div>
+            </button>
+            <button class="mobile-nav-item" onclick="showMobilePage('add')">
+                <div class="mobile-nav-icon">+</div>
+                <div>Add</div>
+            </button>
+            <button class="mobile-nav-item" onclick="showMobilePage('stats')">
+                <div class="mobile-nav-icon">📊</div>
+                <div>Stats</div>
+            </button>
+            <button class="mobile-nav-item" onclick="showMobilePage('energy')">
+                <div class="mobile-nav-icon">⚡</div>
+                <div>Energy</div>
+            </button>
+            <button class="mobile-nav-item" onclick="toggleInsights()">
+                <div class="mobile-nav-icon">💡</div>
+                <div>Tips</div>
+            </button>
+        </nav>
     </div>
 
     <!-- Running Timer Display -->
@@ -1728,6 +2100,32 @@
         let timerInterval = null;
         let runningTimerTaskId = null;
         let activeSection = null;
+
+        // App version for cache busting
+        const APP_VERSION = '1.0.3';
+        
+        // Check for updates on load
+        function checkForUpdates() {
+            const storedVersion = localStorage.getItem('appVersion');
+            if (storedVersion && storedVersion !== APP_VERSION) {
+                console.log('New version detected, clearing cache');
+                // Show update banner
+                const banner = document.getElementById('updateBanner');
+                if (banner) {
+                    banner.style.display = 'block';
+                }
+                // Clear service worker cache if it exists
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        registrations.forEach(registration => registration.update());
+                    });
+                }
+            }
+            localStorage.setItem('appVersion', APP_VERSION);
+        }
+        
+        // Run on load
+        window.addEventListener('load', checkForUpdates);
 
         // Toggle Section Function
         function toggleSection(section) {
@@ -2727,6 +3125,9 @@
             document.getElementById('completedTasks').textContent = completed;
             document.getElementById('completionRate').textContent = completionRate + '%';
             document.getElementById('avgAccuracy').textContent = avgAccuracy;
+            
+            // Update mobile stats too
+            updateMobileStats();
         }
 
         function updateInsights() {
@@ -2918,7 +3319,194 @@
             
             const tasksList = document.getElementById('tasksList');
             tasksList.innerHTML = tasks.filter(t => !t.completed).map(t => `<option value="${t.name}">`).join('');
+            
+            // Update mobile data lists too
+            const mobileProjectList = document.getElementById('mobileProjectList');
+            if (mobileProjectList) {
+                mobileProjectList.innerHTML = projects.map(p => `<option value="${p.name}">`).join('');
+            }
+            
+            const mobileTasksList = document.getElementById('mobileTasksList');
+            if (mobileTasksList) {
+                mobileTasksList.innerHTML = tasks.filter(t => !t.completed).map(t => `<option value="${t.name}">`).join('');
+            }
         }
+
+        // Mobile Navigation Functions
+        function showMobilePage(page) {
+            // Hide all mobile pages
+            document.querySelectorAll('.mobile-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
+            
+            // Show selected page
+            if (page === 'tasks') {
+                document.getElementById('mobileTasks').classList.add('active');
+                document.querySelectorAll('.mobile-nav-item')[0].classList.add('active');
+                renderMobileTasks();
+            } else if (page === 'add') {
+                document.getElementById('mobileAddTask').classList.add('active');
+                document.querySelectorAll('.mobile-nav-item')[1].classList.add('active');
+            } else if (page === 'stats') {
+                document.getElementById('mobileStats').classList.add('active');
+                document.querySelectorAll('.mobile-nav-item')[2].classList.add('active');
+                updateMobileStats();
+            } else if (page === 'energy') {
+                document.getElementById('mobileEnergy').classList.add('active');
+                document.querySelectorAll('.mobile-nav-item')[3].classList.add('active');
+                syncEnergyButtons();
+            }
+        }
+
+        // Render tasks in mobile view
+        function renderMobileTasks() {
+            const container = document.getElementById('mobileTasksContainer');
+            if (!container) return;
+            
+            const activeTasks = tasks.filter(t => !t.completed).sort((a, b) => {
+                const urgencyOrder = { 'past-due': 0, 'due-today': 1, 'due-tomorrow': 2, 'better-start': 3, 'on-track': 4 };
+                const aDeadline = calculateAutoDeadline(a.finalDeadline, a.leadDays);
+                const bDeadline = calculateAutoDeadline(b.finalDeadline, b.leadDays);
+                const aUrgency = calculateUrgency(aDeadline);
+                const bUrgency = calculateUrgency(bDeadline);
+                return urgencyOrder[aUrgency.level] - urgencyOrder[bUrgency.level];
+            });
+
+            if (activeTasks.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">✓</div><p>No active tasks</p></div>';
+                return;
+            }
+
+            // Energy matching for highlighting
+            const energyMatch = {
+                low: 'admin',
+                medium: ['urgent', 'deadlines'],
+                high: 'creative'
+            };
+
+            container.innerHTML = activeTasks.map(task => {
+                const autoDeadline = calculateAutoDeadline(task.finalDeadline, task.leadDays);
+                const urgency = calculateUrgency(autoDeadline);
+                
+                let isEnergyMatched = false;
+                if (currentEnergy === 'low' && task.sprint === energyMatch.low) {
+                    isEnergyMatched = true;
+                } else if (currentEnergy === 'medium' && energyMatch.medium.includes(task.sprint)) {
+                    isEnergyMatched = true;
+                } else if (currentEnergy === 'high' && task.sprint === energyMatch.high) {
+                    isEnergyMatched = true;
+                }
+                
+                return `
+                    <div class="task-card ${isEnergyMatched ? 'energy-matched' : ''}">
+                        <div class="task-header">
+                            <div class="task-title">${task.name}</div>
+                            <div class="task-actions">
+                                <button class="btn-icon" onclick="toggleComplete(${task.id})">○</button>
+                                <button class="btn-icon" onclick="deleteTask(${task.id})">🗑</button>
+                            </div>
+                        </div>
+                        <span class="urgency-badge urgency-${urgency.level}">${urgency.text}</span>
+                        ${isEnergyMatched ? '<span class="urgency-badge" style="background: rgba(52, 199, 89, 0.2); color: var(--success);">⚡ MATCH</span>' : ''}
+                        <div class="task-meta">
+                            <div>${getSprintName(task.sprint)}</div>
+                            <div>${autoDeadline.toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Update mobile stats
+        function updateMobileStats() {
+            document.getElementById('mobileTotalTasks').textContent = document.getElementById('totalTasks').textContent;
+            document.getElementById('mobileUrgentTasks').textContent = document.getElementById('urgentTasks').textContent;
+            document.getElementById('mobileCompletedTasks').textContent = document.getElementById('completedTasks').textContent;
+            document.getElementById('mobileCompletionRate').textContent = document.getElementById('completionRate').textContent;
+            document.getElementById('mobileAvgAccuracy').textContent = document.getElementById('avgAccuracy').textContent;
+        }
+
+        // Sync energy buttons between desktop and mobile
+        function syncEnergyButtons() {
+            // Sync mobile energy buttons with current state
+            document.querySelectorAll('#mobileEnergy .energy-option').forEach(opt => opt.classList.remove('active'));
+            const mobileEnergyBtn = document.getElementById(`mobileEnergy${currentEnergy.charAt(0).toUpperCase() + currentEnergy.slice(1)}`);
+            if (mobileEnergyBtn) {
+                mobileEnergyBtn.classList.add('active');
+            }
+            
+            // Update recommendation
+            const recommendations = {
+                low: "Low energy detected - Focus on simple admin tasks or take a break",
+                medium: "Good energy for urgent tasks and deadlines",
+                high: "High energy! Perfect time for creative work and challenging tasks"
+            };
+            const mobileRec = document.getElementById('mobileEnergyRecommendation');
+            if (mobileRec) {
+                mobileRec.textContent = recommendations[currentEnergy];
+            }
+        }
+
+        // Mobile task form submission
+        document.getElementById('mobileTaskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const projectName = document.getElementById('mobileProjectName').value.trim();
+            const dependenciesInput = document.getElementById('mobileDependencies').value.trim();
+            const dependenciesArray = dependenciesInput ? dependenciesInput.split(',').map(d => d.trim()).filter(d => d) : [];
+            
+            const task = {
+                id: Date.now(),
+                name: document.getElementById('mobileTaskName').value,
+                sprint: document.getElementById('mobileSprintCategory').value,
+                project: projectName || null,
+                finalDeadline: document.getElementById('mobileFinalDeadline').value,
+                leadDays: parseInt(document.getElementById('mobileLeadDays').value) || 0,
+                estimatedTime: parseInt(document.getElementById('mobileEstimatedTime').value) || 0,
+                notes: document.getElementById('mobileTaskNotes').value,
+                dependencies: dependenciesArray,
+                completed: false,
+                createdAt: new Date().toISOString(),
+                actualTime: 0,
+                timerRunning: false,
+                timerStart: null
+            };
+            
+            tasks.push(task);
+            
+            if (projectName) {
+                let project = projects.find(p => p.name === projectName);
+                if (!project) {
+                    project = {
+                        id: Date.now(),
+                        name: projectName,
+                        createdAt: new Date().toISOString(),
+                        taskIds: []
+                    };
+                    projects.push(project);
+                }
+                if (!project.taskIds.includes(task.id)) {
+                    project.taskIds.push(task.id);
+                }
+                saveProjects();
+            }
+            
+            saveTasks();
+            renderTasks();
+            renderMobileTasks();
+            updateStats();
+            updateMobileStats();
+            updateInsights();
+            updateProjectFilters();
+            updateDataLists();
+            
+            this.reset();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('mobileFinalDeadline').value = tomorrow.toISOString().split('T')[0];
+            
+            // Switch to tasks page after adding
+            showMobilePage('tasks');
+        });
 
         // Close modals on outside click
         document.getElementById('editModal').addEventListener('click', function(e) {
