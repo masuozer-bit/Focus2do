@@ -2179,33 +2179,49 @@
         }
 
         function deleteTask(id) {
-            if (confirm('Delete this task?')) {
+            if (!confirm('Delete this task?')) {
+                return; // User cancelled
+            }
+            
+            try {
+                // Remove from local array
                 tasks = tasks.filter(t => t.id !== id);
+                
+                // Remove from projects
                 projects.forEach(project => {
                     project.taskIds = project.taskIds.filter(taskId => taskId !== id);
                 });
                 
-                // Delete from Firestore
+                // Save to localStorage immediately
+                saveTasks();
+                saveProjects();
+                
+                // Delete from Firestore (if online)
                 if (useFirebase && currentUser) {
                     setSyncStatus('syncing');
                     const userRef = db.collection('users').doc(currentUser.uid);
                     userRef.collection('tasks').doc(String(id)).delete()
                         .then(() => {
+                            console.log('Task deleted from Firestore');
                             setSyncStatus('synced');
                         })
                         .catch(error => {
-                            console.error('Delete error:', error);
+                            console.error('Firestore delete error:', error);
+                            // Still show synced because local delete worked
                             setSyncStatus('synced');
                         });
                 }
                 
-                saveTasks();
-                saveProjects();
+                // Update UI
                 renderTasks();
                 updateStats();
                 updateInsights();
                 updateProjectFilters();
                 updateDataLists();
+                
+            } catch (error) {
+                console.error('Delete task error:', error);
+                alert('Error deleting task. Please refresh the page and try again.');
             }
         }
 
