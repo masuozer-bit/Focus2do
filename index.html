@@ -2184,10 +2184,26 @@
                 projects.forEach(project => {
                     project.taskIds = project.taskIds.filter(taskId => taskId !== id);
                 });
+                
+                // Delete from Firestore
+                if (useFirebase && currentUser) {
+                    setSyncStatus('syncing');
+                    const userRef = db.collection('users').doc(currentUser.uid);
+                    userRef.collection('tasks').doc(String(id)).delete()
+                        .then(() => {
+                            setSyncStatus('synced');
+                        })
+                        .catch(error => {
+                            console.error('Delete error:', error);
+                            setSyncStatus('synced');
+                        });
+                }
+                
                 saveTasks();
                 saveProjects();
                 renderTasks();
                 updateStats();
+                updateInsights();
                 updateProjectFilters();
                 updateDataLists();
             }
