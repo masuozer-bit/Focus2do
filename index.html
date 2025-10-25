@@ -44,6 +44,33 @@
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
         }
 
+        [data-theme="dark"] {
+            --primary: #0A84FF;
+            --primary-hover: #409CFF;
+            --secondary: #5E5CE6;
+            --success: #32D74B;
+            --warning: #FF9F0A;
+            --danger: #FF453A;
+            --gray-1: #F5F1E8;
+            --gray-2: #E8E3D8;
+            --gray-3: #D4CFC4;
+            --gray-4: #C0BBB0;
+            --gray-5: #A8A39A;
+            --gray-6: #8E8A82;
+            --text-primary: #000000;
+            --text-secondary: #2C2C2C;
+            --text-tertiary: #5A5A5A;
+            --card-bg: #F5F1E8;
+            --bg: #000000;
+            --shadow-sm: 0 1px 3px rgba(255,255,255,0.06);
+            --shadow-md: 0 4px 12px rgba(255,255,255,0.08);
+            --shadow-lg: 0 8px 32px rgba(255,255,255,0.12);
+        }
+
+        [data-theme="dark"] body {
+            background: #000000;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
             background: #F5F1E8;
@@ -286,39 +313,6 @@
         .insight-text {
             font-size: 13px;
             color: var(--text-secondary);
-        }
-
-        /* Insights Toggle Button */
-        .insights-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 48px;
-            height: 48px;
-            background: rgba(255,255,255,0.92);
-            border-radius: 50%;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-            border: 2px solid rgba(0,0,0,0.06);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            z-index: 999;
-        }
-
-        .insights-toggle:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            border-color: var(--primary);
-        }
-
-        .insights-toggle.active {
-            background: linear-gradient(135deg, #007AFF, #0051D5);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.5);
         }
 
         .user-info {
@@ -729,6 +723,28 @@
             transform: scale(0.95);
         }
 
+        .btn-icon-tiny {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            color: var(--text-secondary);
+        }
+
+        .btn-icon-tiny:hover {
+            background: rgba(0,0,0,0.12);
+            transform: scale(1.15);
+        }
+
         /* Task Cards */
         .tasks-container {
             max-height: 900px;
@@ -1034,11 +1050,11 @@
             border-radius: 24px;
             font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
         }
 
         .project-filter-chip:hover {
@@ -1050,6 +1066,15 @@
             background: linear-gradient(135deg, #007AFF, #0051D5);
             color: white;
             border-color: transparent;
+        }
+
+        .project-filter-chip.active .btn-icon-tiny {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .project-filter-chip.active .btn-icon-tiny:hover {
+            background: rgba(255,255,255,0.35);
         }
 
         .clear-filters {
@@ -1332,6 +1357,31 @@
             margin-bottom: 12px;
         }
 
+        .sync-btn {
+            background: transparent;
+            border: 1px solid var(--gray-3);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            padding: 0;
+        }
+
+        .sync-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: rotate(180deg);
+        }
+
+        .sync-btn:active {
+            transform: rotate(360deg);
+        }
+
         .sync-indicator {
             width: 10px;
             height: 10px;
@@ -1382,6 +1432,129 @@
             color: var(--text-secondary);
         }
 
+        /* Settings UI */
+        .settings-group {
+            margin-bottom: 28px;
+        }
+
+        .settings-group h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 2px solid var(--gray-2);
+            margin-bottom: 10px;
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .setting-description {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 51px;
+            height: 31px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-3);
+            transition: 0.3s;
+            border-radius: 31px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 27px;
+            width: 27px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--success);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Sprint Category Item */
+        .sprint-category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 2px solid var(--gray-2);
+            margin-bottom: 8px;
+        }
+
+        .sprint-category-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sprint-category-icon {
+            font-size: 20px;
+        }
+
+        .sprint-category-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .sprint-category-energy {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            background: var(--gray-1);
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-top: 2px;
+        }
+
+        .sprint-category-actions {
+            display: flex;
+            gap: 6px;
+        }
+
         /* Mobile Navigation (hidden on desktop) */
         .mobile-nav {
             display: none;
@@ -1399,10 +1572,6 @@
             }
 
             .stats-sidebar {
-                display: none !important;
-            }
-
-            .insights-toggle {
                 display: none !important;
             }
 
@@ -1666,6 +1835,7 @@
         <div class="sync-status" id="syncStatus" style="display: none;">
             <span class="sync-indicator" id="syncIndicator"></span>
             <span id="syncText">Synced</span>
+            <button onclick="manualSync()" class="sync-btn" title="Sync Now">🔄</button>
         </div>
 
         <div class="main-grid">
@@ -1682,10 +1852,11 @@
                 <div class="section-toggle" id="energyToggle" onclick="toggleSection('energy')" title="Energy Level">
                     <span class="section-toggle-icon">⚡</span>
                 </div>
-            </div>
 
-        <!-- Insights Toggle Button (Bottom Left) -->
-        <button class="insights-toggle" id="insightsToggle" onclick="toggleInsights()" title="Cat Insights">💡</button>
+                <div class="section-toggle" id="settingsToggle" onclick="toggleSection('settings')" title="Settings">
+                    <span class="section-toggle-icon">⚙️</span>
+                </div>
+            </div>
 
             <!-- Middle Column - Add Task OR Expanded Section -->
             <div class="sidebar" id="addTaskSection">
@@ -1713,8 +1884,12 @@
 
                     <div class="form-group">
                         <label>Project (optional)</label>
-                        <input type="text" id="projectName" placeholder="e.g., Video Production" list="projectList">
-                        <datalist id="projectList"></datalist>
+                        <div style="display: flex; gap: 8px;">
+                            <select id="projectName" style="flex: 1;">
+                                <option value="">No Project</option>
+                            </select>
+                            <button type="button" class="btn-secondary" onclick="showAddProjectModal()" style="width: auto; padding: 0 16px;">+ New</button>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1819,16 +1994,36 @@
                 <div id="energyRecommendation" style="font-size: 12px; color: var(--text-tertiary); margin-top: 12px; padding: 12px; background: var(--gray-1); border-radius: 8px;"></div>
             </div>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
-                    <h2 style="margin: 0;">Tasks</h2>
-                    <div class="segmented-control">
-                        <button class="segment active" onclick="switchView('list')">List</button>
-                        <button class="segment" onclick="switchView('sprint')">Sprint</button>
-                        <button class="segment" onclick="switchView('projects')">Projects</button>
+            <!-- Expanded Settings Section -->
+            <div class="expandable-section" id="settingsSection">
+                <h2>⚙️ Settings</h2>
+                
+                <!-- Dark Mode -->
+                <div class="settings-group">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Dark Mode</div>
+                            <div class="setting-description">Switch to dark theme</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                            <span class="toggle-slider"></span>
+                        </label>
                     </div>
                 </div>
+
+                <!-- Sprint Categories -->
+                <div class="settings-group">
+                    <h3>Sprint Categories</h3>
+                    <div id="sprintCategoriesList"></div>
+                    <button class="btn-secondary" onclick="showAddSprintModal()" style="width: 100%; margin-top: 12px;">+ Add Sprint Category</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h2 style="margin-bottom: 24px;">Tasks</h2>
 
                 <!-- Project Filters -->
                 <div class="project-filters" id="projectFilters" style="display: none;"></div>
@@ -1841,12 +2036,23 @@
                         <button class="segment" onclick="filterTasks('completed')">Done</button>
                     </div>
 
-                    <div class="sprint-tabs">
-                        <div class="sprint-tab active" onclick="filterBySprint('all')">All</div>
-                        <div class="sprint-tab" onclick="filterBySprint('urgent')">🔥 Urgent</div>
-                        <div class="sprint-tab" onclick="filterBySprint('deadlines')">⏰ Deadlines</div>
-                        <div class="sprint-tab" onclick="filterBySprint('admin')">📋 Admin</div>
-                        <div class="sprint-tab" onclick="filterBySprint('creative')">🎨 Creative</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+                        <div class="sprint-tabs" style="margin: 0;">
+                            <div class="sprint-tab active" onclick="filterBySprint('all')">All</div>
+                            <div class="sprint-tab" id="sprintTab-urgent" onclick="filterBySprint('urgent')">🔥 Urgent</div>
+                            <div class="sprint-tab" id="sprintTab-deadlines" onclick="filterBySprint('deadlines')">⏰ Deadlines</div>
+                            <div class="sprint-tab" id="sprintTab-admin" onclick="filterBySprint('admin')">📋 Admin</div>
+                            <div class="sprint-tab" id="sprintTab-creative" onclick="filterBySprint('creative')">🎨 Creative</div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-size: 12px; color: var(--text-tertiary); font-weight: 600;">Sort:</label>
+                            <select id="sortTasks" onchange="changeSortOrder(this.value)" style="padding: 6px 10px; border-radius: 8px; border: 2px solid var(--gray-3); background: var(--card-bg); font-size: 12px; font-weight: 600; cursor: pointer;">
+                                <option value="urgency">By Urgency</option>
+                                <option value="deadline">By Deadline</option>
+                                <option value="created">By Date Created</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="tasks-container" id="tasksContainer">
@@ -1855,16 +2061,6 @@
                             <p>No tasks yet. Add your first task!</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Sprint View -->
-                <div id="sprintView" style="display: none;">
-                    <div id="dailySprint"></div>
-                </div>
-
-                <!-- Projects View -->
-                <div id="projectsView" style="display: none;">
-                    <div id="projectsList"></div>
                 </div>
             </div>
         </div>
@@ -1895,8 +2091,12 @@
                 </div>
                 <div class="form-group">
                     <label>Project (optional)</label>
-                    <input type="text" id="mobileProjectName" placeholder="e.g., Video Production" list="mobileProjectList">
-                    <datalist id="mobileProjectList"></datalist>
+                    <div style="display: flex; gap: 8px;">
+                        <select id="mobileProjectName" style="flex: 1;">
+                            <option value="">No Project</option>
+                        </select>
+                        <button type="button" class="btn-secondary" onclick="showAddProjectModal()" style="width: auto; padding: 0 14px; font-size: 13px;">+</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Final Deadline</label>
@@ -2058,6 +2258,64 @@
         </div>
     </div>
 
+    <!-- Add Project Modal -->
+    <div class="modal" id="addProjectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">New Project</h2>
+                <button class="btn-icon" onclick="closeAddProjectModal()">✕</button>
+            </div>
+            <form id="addProjectForm">
+                <div class="form-group">
+                    <label>Project Name</label>
+                    <input type="text" id="newProjectName" required placeholder="e.g., Website Redesign" autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Description (optional)</label>
+                    <textarea id="newProjectDescription" placeholder="What is this project about?"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 24px;">
+                    <button type="button" class="btn-secondary" onclick="closeAddProjectModal()" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn-primary" style="flex: 1;">Create Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Sprint Category Modal -->
+    <div class="modal" id="sprintModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="sprintModalTitle">New Sprint Category</h2>
+                <button class="btn-icon" onclick="closeSprintModal()">✕</button>
+            </div>
+            <form id="sprintForm">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" id="sprintName" required placeholder="e.g., Focus Work">
+                </div>
+                <div class="form-group">
+                    <label>Emoji Icon</label>
+                    <input type="text" id="sprintIcon" required placeholder="e.g., 🎯" maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label>Energy Level Match</label>
+                    <select id="sprintEnergy">
+                        <option value="">No energy match</option>
+                        <option value="low">Low Energy</option>
+                        <option value="medium">Medium Energy</option>
+                        <option value="high">High Energy</option>
+                    </select>
+                    <small>Tasks in this sprint will be highlighted when your energy matches</small>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 24px;">
+                    <button type="button" class="btn-secondary" onclick="closeSprintModal()" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn-primary" style="flex: 1;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Firebase Configuration
         const firebaseConfig = {
@@ -2100,9 +2358,16 @@
         let timerInterval = null;
         let runningTimerTaskId = null;
         let activeSection = null;
+        let currentSortOrder = 'urgency';
+        let sprintCategories = [
+            { id: 'urgent', name: 'Urgent', icon: '🔥', energy: 'medium', deletable: false },
+            { id: 'deadlines', name: 'Deadlines', icon: '⏰', energy: 'medium', deletable: false },
+            { id: 'admin', name: 'Admin', icon: '📋', energy: 'low', deletable: false },
+            { id: 'creative', name: 'Creative', icon: '🎨', energy: 'high', deletable: false }
+        ];
 
         // App version for cache busting
-        const APP_VERSION = '1.0.3';
+        const APP_VERSION = '1.0.9';
         
         // Check for updates on load
         function checkForUpdates() {
@@ -2133,10 +2398,12 @@
             const statsSection = document.getElementById('statsSection');
             const templatesSection = document.getElementById('templatesSection');
             const energySection = document.getElementById('energySection');
+            const settingsSection = document.getElementById('settingsSection');
             
             const statsToggle = document.getElementById('statsToggle');
             const templatesToggle = document.getElementById('templatesToggle');
             const energyToggle = document.getElementById('energyToggle');
+            const settingsToggle = document.getElementById('settingsToggle');
             
             // If clicking the same section, close it
             if (activeSection === section) {
@@ -2144,10 +2411,12 @@
                 statsSection.classList.remove('active');
                 templatesSection.classList.remove('active');
                 energySection.classList.remove('active');
+                settingsSection.classList.remove('active');
                 
                 statsToggle.classList.remove('active');
                 templatesToggle.classList.remove('active');
                 energyToggle.classList.remove('active');
+                settingsToggle.classList.remove('active');
                 
                 activeSection = null;
                 return;
@@ -2160,11 +2429,13 @@
             statsSection.classList.remove('active');
             templatesSection.classList.remove('active');
             energySection.classList.remove('active');
+            settingsSection.classList.remove('active');
             
             // Remove active from all toggles
             statsToggle.classList.remove('active');
             templatesToggle.classList.remove('active');
             energyToggle.classList.remove('active');
+            settingsToggle.classList.remove('active');
             
             // Show selected section
             if (section === 'stats') {
@@ -2176,6 +2447,10 @@
             } else if (section === 'energy') {
                 energySection.classList.add('active');
                 energyToggle.classList.add('active');
+            } else if (section === 'settings') {
+                settingsSection.classList.add('active');
+                settingsToggle.classList.add('active');
+                renderSprintCategories();
             }
             
             activeSection = section;
@@ -2363,6 +2638,55 @@
             }
         }
 
+        // Manual Sync Function
+        function manualSync() {
+            if (!useFirebase || !currentUser) {
+                alert('Not connected to cloud. Sign in to sync.');
+                return;
+            }
+            
+            setSyncStatus('syncing');
+            
+            // Force save all data
+            const promises = [];
+            
+            // Sync tasks
+            const batch = db.batch();
+            const userRef = db.collection('users').doc(currentUser.uid);
+            
+            tasks.forEach(task => {
+                const taskRef = userRef.collection('tasks').doc(String(task.id));
+                batch.set(taskRef, task);
+            });
+            
+            promises.push(batch.commit());
+            
+            // Sync projects
+            projects.forEach(project => {
+                promises.push(
+                    userRef.collection('projects').doc(String(project.id)).set(project)
+                );
+            });
+            
+            // Sync templates
+            templates.forEach(template => {
+                promises.push(
+                    userRef.collection('templates').doc(String(template.id)).set(template)
+                );
+            });
+            
+            Promise.all(promises)
+                .then(() => {
+                    setSyncStatus('synced');
+                    console.log('Manual sync completed');
+                })
+                .catch(error => {
+                    console.error('Manual sync error:', error);
+                    alert('Sync failed. Check your connection.');
+                    setSyncStatus('synced');
+                });
+        }
+
         // Task Form Submit
         document.getElementById('taskForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2392,19 +2716,10 @@
             
             if (projectName) {
                 let project = projects.find(p => p.name === projectName);
-                if (!project) {
-                    project = {
-                        id: Date.now(),
-                        name: projectName,
-                        createdAt: new Date().toISOString(),
-                        taskIds: []
-                    };
-                    projects.push(project);
-                }
-                if (!project.taskIds.includes(task.id)) {
+                if (project && !project.taskIds.includes(task.id)) {
                     project.taskIds.push(task.id);
+                    saveProjects();
                 }
-                saveProjects();
             }
             
             saveTasks();
@@ -2468,14 +2783,7 @@
                 return sprintMatch && statusMatch && projectMatch;
             });
 
-            filteredTasks.sort((a, b) => {
-                const urgencyOrder = { 'past-due': 0, 'due-today': 1, 'due-tomorrow': 2, 'better-start': 3, 'on-track': 4 };
-                const aDeadline = calculateAutoDeadline(a.finalDeadline, a.leadDays);
-                const bDeadline = calculateAutoDeadline(b.finalDeadline, b.leadDays);
-                const aUrgency = calculateUrgency(aDeadline);
-                const bUrgency = calculateUrgency(bDeadline);
-                return urgencyOrder[aUrgency.level] - urgencyOrder[bUrgency.level];
-            });
+            filteredTasks = sortTasks(filteredTasks);
 
             if (filteredTasks.length === 0) {
                 container.innerHTML = `
@@ -2820,10 +3128,9 @@
 
         // Project Filters
         function updateProjectFilters() {
-            const projectNames = [...new Set(tasks.filter(t => t.project).map(t => t.project))];
             const container = document.getElementById('projectFilters');
             
-            if (projectNames.length === 0) {
+            if (projects.length === 0) {
                 container.style.display = 'none';
                 return;
             }
@@ -2833,12 +3140,21 @@
                 <div style="font-size: 13px; font-weight: 600; color: var(--text-tertiary); display: flex; align-items: center;">
                     Projects:
                 </div>
-                ${projectNames.map(name => `
-                    <div class="project-filter-chip ${selectedProjectFilters.includes(name) ? 'active' : ''}" 
-                         onclick="toggleProjectFilter('${name}')">
-                        📁 ${name}
-                    </div>
-                `).join('')}
+                ${projects.map(project => {
+                    const isActive = selectedProjectFilters.includes(project.name);
+                    return `
+                        <div class="project-filter-chip ${isActive ? 'active' : ''}" 
+                             onclick="toggleProjectFilter('${project.name.replace(/'/g, "\\'")}')">
+                            <span>${project.name}</span>
+                            ${isActive ? `
+                                <div style="display: flex; gap: 6px; margin-left: 6px;">
+                                    <button class="btn-icon-tiny" onclick="event.stopPropagation(); editProject(${project.id})" title="Edit">✏</button>
+                                    <button class="btn-icon-tiny" onclick="event.stopPropagation(); deleteProject(${project.id})" title="Delete">×</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('')}
                 ${selectedProjectFilters.length > 0 ? `
                     <button class="clear-filters" onclick="clearProjectFilters()">Clear</button>
                 ` : ''}
@@ -2860,6 +3176,55 @@
             selectedProjectFilters = [];
             updateProjectFilters();
             renderTasks();
+        }
+
+        function editProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            document.getElementById('newProjectName').value = project.name;
+            document.getElementById('newProjectDescription').value = project.description || '';
+            document.getElementById('addProjectModal').classList.add('active');
+            document.getElementById('addProjectModal').dataset.editingId = projectId;
+            document.querySelector('#addProjectModal .modal-title').textContent = 'Edit Project';
+            document.querySelector('#addProjectForm button[type="submit"]').textContent = 'Save Changes';
+        }
+
+        function deleteProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const tasksInProject = tasks.filter(t => t.project === project.name);
+            
+            let confirmMsg = `Delete project "${project.name}"?`;
+            if (tasksInProject.length > 0) {
+                confirmMsg += `\n\nThis will remove the project from ${tasksInProject.length} task(s), but the tasks will remain.`;
+            }
+            
+            if (!confirm(confirmMsg)) return;
+            
+            // Remove project from tasks
+            tasksInProject.forEach(task => {
+                task.project = null;
+            });
+            
+            // Remove from projects array
+            projects = projects.filter(p => p.id !== projectId);
+            
+            // Remove from selected filters
+            selectedProjectFilters = selectedProjectFilters.filter(name => name !== project.name);
+            
+            saveTasks();
+            saveProjects();
+            renderTasks();
+            updateProjectFilters();
+            updateProjectDropdowns();
+            
+            // Delete from Firestore
+            if (useFirebase && currentUser) {
+                const userRef = db.collection('users').doc(currentUser.uid);
+                userRef.collection('projects').doc(String(projectId)).delete();
+            }
         }
 
         // Template Builder Functions
@@ -3274,21 +3639,17 @@
 
         function toggleInsights() {
             const bubble = document.getElementById('catSpeechBubble');
-            const toggle = document.getElementById('insightsToggle');
             
             if (bubble.style.display === 'none' || !bubble.style.display) {
                 bubble.style.display = 'block';
-                toggle.classList.add('active');
                 updateInsights(); // Refresh insights when opening
             } else {
                 bubble.style.display = 'none';
-                toggle.classList.remove('active');
             }
         }
 
         function closeCatInsights() {
             document.getElementById('catSpeechBubble').style.display = 'none';
-            document.getElementById('insightsToggle').classList.remove('active');
         }
 
         // Make cat clickable to show insights
@@ -3314,23 +3675,121 @@
         }
 
         function updateDataLists() {
-            const projectList = document.getElementById('projectList');
-            projectList.innerHTML = projects.map(p => `<option value="${p.name}">`).join('');
-            
+            // Update task dependencies lists
             const tasksList = document.getElementById('tasksList');
             tasksList.innerHTML = tasks.filter(t => !t.completed).map(t => `<option value="${t.name}">`).join('');
-            
-            // Update mobile data lists too
-            const mobileProjectList = document.getElementById('mobileProjectList');
-            if (mobileProjectList) {
-                mobileProjectList.innerHTML = projects.map(p => `<option value="${p.name}">`).join('');
-            }
             
             const mobileTasksList = document.getElementById('mobileTasksList');
             if (mobileTasksList) {
                 mobileTasksList.innerHTML = tasks.filter(t => !t.completed).map(t => `<option value="${t.name}">`).join('');
             }
+            
+            // Update project dropdowns
+            updateProjectDropdowns();
         }
+
+        function updateProjectDropdowns() {
+            const projectSelect = document.getElementById('projectName');
+            const mobileProjectSelect = document.getElementById('mobileProjectName');
+            
+            const projectOptions = '<option value="">No Project</option>' + 
+                projects.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
+            
+            if (projectSelect) {
+                const currentValue = projectSelect.value;
+                projectSelect.innerHTML = projectOptions;
+                projectSelect.value = currentValue;
+            }
+            
+            if (mobileProjectSelect) {
+                const currentValue = mobileProjectSelect.value;
+                mobileProjectSelect.innerHTML = projectOptions;
+                mobileProjectSelect.value = currentValue;
+            }
+        }
+
+        // Project Modal Functions
+        function showAddProjectModal() {
+            document.getElementById('addProjectModal').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('newProjectName').focus();
+            }, 100);
+        }
+
+        function closeAddProjectModal() {
+            const modal = document.getElementById('addProjectModal');
+            modal.classList.remove('active');
+            document.getElementById('addProjectForm').reset();
+            delete modal.dataset.editingId;
+            document.querySelector('#addProjectModal .modal-title').textContent = 'New Project';
+            document.querySelector('#addProjectForm button[type="submit"]').textContent = 'Create Project';
+        }
+
+        // Add Project Form Handler
+        document.getElementById('addProjectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('newProjectName').value.trim();
+            const description = document.getElementById('newProjectDescription').value.trim();
+            const editingId = document.getElementById('addProjectModal').dataset.editingId;
+            
+            if (editingId) {
+                // Edit existing project
+                const project = projects.find(p => p.id === parseInt(editingId));
+                if (project) {
+                    const oldName = project.name;
+                    project.name = name;
+                    project.description = description;
+                    
+                    // Update project name in all tasks
+                    tasks.forEach(task => {
+                        if (task.project === oldName) {
+                            task.project = name;
+                        }
+                    });
+                    
+                    // Update in selected filters
+                    const filterIndex = selectedProjectFilters.indexOf(oldName);
+                    if (filterIndex > -1) {
+                        selectedProjectFilters[filterIndex] = name;
+                    }
+                    
+                    saveTasks();
+                    saveProjects();
+                    renderTasks();
+                }
+                
+                delete document.getElementById('addProjectModal').dataset.editingId;
+            } else {
+                // Create new project
+                // Check if project already exists
+                if (projects.find(p => p.name.toLowerCase() === name.toLowerCase())) {
+                    alert('A project with this name already exists');
+                    return;
+                }
+                
+                const project = {
+                    id: Date.now(),
+                    name: name,
+                    description: description,
+                    createdAt: new Date().toISOString(),
+                    taskIds: []
+                };
+                
+                projects.push(project);
+                saveProjects();
+                
+                // Select the new project in the dropdown
+                const projectSelect = document.getElementById('projectName');
+                const mobileProjectSelect = document.getElementById('mobileProjectName');
+                if (projectSelect) projectSelect.value = name;
+                if (mobileProjectSelect) mobileProjectSelect.value = name;
+            }
+            
+            updateProjectDropdowns();
+            updateProjectFilters();
+            closeAddProjectModal();
+        });
 
         // Mobile Navigation Functions
         function showMobilePage(page) {
@@ -3362,14 +3821,8 @@
             const container = document.getElementById('mobileTasksContainer');
             if (!container) return;
             
-            const activeTasks = tasks.filter(t => !t.completed).sort((a, b) => {
-                const urgencyOrder = { 'past-due': 0, 'due-today': 1, 'due-tomorrow': 2, 'better-start': 3, 'on-track': 4 };
-                const aDeadline = calculateAutoDeadline(a.finalDeadline, a.leadDays);
-                const bDeadline = calculateAutoDeadline(b.finalDeadline, b.leadDays);
-                const aUrgency = calculateUrgency(aDeadline);
-                const bUrgency = calculateUrgency(bDeadline);
-                return urgencyOrder[aUrgency.level] - urgencyOrder[bUrgency.level];
-            });
+            let activeTasks = tasks.filter(t => !t.completed);
+            activeTasks = sortTasks(activeTasks);
 
             if (activeTasks.length === 0) {
                 container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">✓</div><p>No active tasks</p></div>';
@@ -3475,19 +3928,10 @@
             
             if (projectName) {
                 let project = projects.find(p => p.name === projectName);
-                if (!project) {
-                    project = {
-                        id: Date.now(),
-                        name: projectName,
-                        createdAt: new Date().toISOString(),
-                        taskIds: []
-                    };
-                    projects.push(project);
-                }
-                if (!project.taskIds.includes(task.id)) {
+                if (project && !project.taskIds.includes(task.id)) {
                     project.taskIds.push(task.id);
+                    saveProjects();
                 }
-                saveProjects();
             }
             
             saveTasks();
@@ -3508,6 +3952,206 @@
             showMobilePage('tasks');
         });
 
+        // Dark Mode
+        function toggleDarkMode() {
+            const isDark = document.getElementById('darkModeToggle').checked;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load dark mode preference
+        function loadDarkMode() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            document.getElementById('darkModeToggle').checked = darkMode;
+            if (darkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Sort Tasks
+        function changeSortOrder(order) {
+            currentSortOrder = order;
+            renderTasks();
+        }
+
+        function sortTasks(tasksArray) {
+            if (currentSortOrder === 'urgency') {
+                return tasksArray.sort((a, b) => {
+                    const urgencyOrder = { 'past-due': 0, 'due-today': 1, 'due-tomorrow': 2, 'better-start': 3, 'on-track': 4 };
+                    const aDeadline = calculateAutoDeadline(a.finalDeadline, a.leadDays);
+                    const bDeadline = calculateAutoDeadline(b.finalDeadline, b.leadDays);
+                    const aUrgency = calculateUrgency(aDeadline);
+                    const bUrgency = calculateUrgency(bDeadline);
+                    return urgencyOrder[aUrgency.level] - urgencyOrder[bUrgency.level];
+                });
+            } else if (currentSortOrder === 'deadline') {
+                return tasksArray.sort((a, b) => {
+                    const aDeadline = calculateAutoDeadline(a.finalDeadline, a.leadDays);
+                    const bDeadline = calculateAutoDeadline(b.finalDeadline, b.leadDays);
+                    return aDeadline - bDeadline;
+                });
+            } else if (currentSortOrder === 'created') {
+                return tasksArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            }
+            return tasksArray;
+        }
+
+        // Sprint Categories Management
+        function renderSprintCategories() {
+            const container = document.getElementById('sprintCategoriesList');
+            container.innerHTML = sprintCategories.map(sprint => `
+                <div class="sprint-category-item">
+                    <div class="sprint-category-info">
+                        <div class="sprint-category-icon">${sprint.icon}</div>
+                        <div>
+                            <div class="sprint-category-name">${sprint.name}</div>
+                            ${sprint.energy ? `<div class="sprint-category-energy">Energy: ${sprint.energy}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="sprint-category-actions">
+                        <button class="btn-icon-tiny" onclick="editSprintCategory('${sprint.id}')" title="Edit">✏</button>
+                        ${sprint.deletable !== false ? `
+                            <button class="btn-icon-tiny" onclick="deleteSprintCategory('${sprint.id}')" title="Delete">×</button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showAddSprintModal() {
+            document.getElementById('sprintModalTitle').textContent = 'New Sprint Category';
+            document.getElementById('sprintForm').reset();
+            delete document.getElementById('sprintModal').dataset.editingId;
+            document.getElementById('sprintModal').classList.add('active');
+        }
+
+        function editSprintCategory(sprintId) {
+            const sprint = sprintCategories.find(s => s.id === sprintId);
+            if (!sprint) return;
+            
+            document.getElementById('sprintModalTitle').textContent = 'Edit Sprint Category';
+            document.getElementById('sprintName').value = sprint.name;
+            document.getElementById('sprintIcon').value = sprint.icon;
+            document.getElementById('sprintEnergy').value = sprint.energy || '';
+            document.getElementById('sprintModal').dataset.editingId = sprintId;
+            document.getElementById('sprintModal').classList.add('active');
+        }
+
+        function deleteSprintCategory(sprintId) {
+            const sprint = sprintCategories.find(s => s.id === sprintId);
+            if (!sprint) return;
+            
+            const tasksInSprint = tasks.filter(t => t.sprint === sprintId);
+            if (tasksInSprint.length > 0) {
+                if (!confirm(`Delete "${sprint.name}"?\n\n${tasksInSprint.length} task(s) will be moved to "Urgent".`)) {
+                    return;
+                }
+                // Move tasks to urgent
+                tasksInSprint.forEach(t => t.sprint = 'urgent');
+                saveTasks();
+            } else {
+                if (!confirm(`Delete "${sprint.name}"?`)) return;
+            }
+            
+            sprintCategories = sprintCategories.filter(s => s.id !== sprintId);
+            localStorage.setItem('sprintCategories', JSON.stringify(sprintCategories));
+            renderSprintCategories();
+            updateSprintTabs();
+            updateSprintDropdowns();
+            renderTasks();
+        }
+
+        function closeSprintModal() {
+            document.getElementById('sprintModal').classList.remove('active');
+            delete document.getElementById('sprintModal').dataset.editingId;
+        }
+
+        // Sprint Form Handler
+        document.getElementById('sprintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('sprintName').value.trim();
+            const icon = document.getElementById('sprintIcon').value.trim();
+            const energy = document.getElementById('sprintEnergy').value;
+            const editingId = document.getElementById('sprintModal').dataset.editingId;
+            
+            if (editingId) {
+                // Edit existing
+                const sprint = sprintCategories.find(s => s.id === editingId);
+                if (sprint) {
+                    sprint.name = name;
+                    sprint.icon = icon;
+                    sprint.energy = energy || null;
+                }
+            } else {
+                // Add new
+                const id = name.toLowerCase().replace(/\s+/g, '-');
+                if (sprintCategories.find(s => s.id === id)) {
+                    alert('A sprint with this name already exists');
+                    return;
+                }
+                
+                sprintCategories.push({
+                    id: id,
+                    name: name,
+                    icon: icon,
+                    energy: energy || null,
+                    deletable: true
+                });
+            }
+            
+            localStorage.setItem('sprintCategories', JSON.stringify(sprintCategories));
+            renderSprintCategories();
+            updateSprintTabs();
+            updateSprintDropdowns();
+            closeSprintModal();
+        });
+
+        function updateSprintTabs() {
+            // Update sprint tabs in main view
+            const sprintTabs = document.querySelector('.sprint-tabs');
+            if (!sprintTabs) return;
+            
+            sprintTabs.innerHTML = `
+                <div class="sprint-tab active" onclick="filterBySprint('all')">All</div>
+                ${sprintCategories.map(sprint => `
+                    <div class="sprint-tab" id="sprintTab-${sprint.id}" onclick="filterBySprint('${sprint.id}')">
+                        ${sprint.icon} ${sprint.name}
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function updateSprintDropdowns() {
+            // Update sprint dropdowns in forms
+            const sprintSelects = [
+                document.getElementById('sprintCategory'),
+                document.getElementById('mobileSprintCategory'),
+                document.getElementById('editTaskSprint'),
+                document.getElementById('templateTaskSprint')
+            ];
+            
+            sprintSelects.forEach(select => {
+                if (!select) return;
+                const currentValue = select.value;
+                select.innerHTML = sprintCategories.map(sprint => 
+                    `<option value="${sprint.id}">${sprint.icon} ${sprint.name}</option>`
+                ).join('');
+                if (currentValue && sprintCategories.find(s => s.id === currentValue)) {
+                    select.value = currentValue;
+                }
+            });
+        }
+
+        function loadSprintCategories() {
+            const saved = localStorage.getItem('sprintCategories');
+            if (saved) {
+                sprintCategories = JSON.parse(saved);
+                updateSprintTabs();
+                updateSprintDropdowns();
+            }
+        }
+
         // Close modals on outside click
         document.getElementById('editModal').addEventListener('click', function(e) {
             if (e.target === this) closeEditModal();
@@ -3516,6 +4160,20 @@
         document.getElementById('templateTaskModal').addEventListener('click', function(e) {
             if (e.target === this) closeTemplateTaskModal();
         });
+        
+        document.getElementById('addProjectModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAddProjectModal();
+        });
+        
+        document.getElementById('sprintModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSprintModal();
+        });
+
+        // Initialize settings on load
+        setTimeout(() => {
+            loadDarkMode();
+            loadSprintCategories();
+        }, 100);
     </script>
 </body>
 </html>
