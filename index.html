@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App</title>
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <style>
         * {
             margin: 0;
@@ -785,8 +784,16 @@
         let currentUser = null;
         let collapsedProjects = new Set();
 
-        // Google OAuth Konfiguration
-        const GOOGLE_CLIENT_ID = 'YOUR_CLIENT_ID.apps.googleusercontent.com';
+        // ⚠️ WICHTIG: Ersetze diese Client ID mit deiner eigenen!
+        // So bekommst du eine Client ID:
+        // 1. Gehe zu https://console.cloud.google.com/
+        // 2. Erstelle ein Projekt
+        // 3. Aktiviere "Google+ API"
+        // 4. Gehe zu "Credentials" → "Create Credentials" → "OAuth client ID"
+        // 5. Wähle "Web application"
+        // 6. Füge deine URL als "Authorized JavaScript origins" hinzu
+        // 7. Kopiere die Client ID hierhin:
+        const GOOGLE_CLIENT_ID = '142758524013-aspsuv7beskpbci2ab3v246o5evivvcd.apps.googleusercontent.com'; // ← Hier deine Client ID einfügen!
 
         // Initialisierung
         function init() {
@@ -848,7 +855,53 @@
         });
 
         function loginWithGoogle() {
-            alert('Google Login ist in dieser Demo-Version nicht verfügbar. Bitte nutze "Offline fortfahren" oder implementiere Google OAuth mit deiner eigenen Client ID.');
+            // Prüfe ob Client ID konfiguriert wurde
+            if (GOOGLE_CLIENT_ID === '142758524013-aspsuv7beskpbci2ab3v246o5evivvcd.apps.googleusercontent.com') {
+                alert('⚠️ Google Login nicht konfiguriert!\n\nBitte ersetze die GOOGLE_CLIENT_ID im Code mit deiner eigenen Client ID.\n\nAnleitung:\n1. Öffne die HTML-Datei in einem Editor\n2. Suche nach "GOOGLE_CLIENT_ID"\n3. Ersetze den Wert mit deiner Client ID von console.cloud.google.com');
+                return;
+            }
+            
+            // Prüfe ob Google API geladen wurde
+            if (typeof google === 'undefined' || !google.accounts) {
+                alert('⚠️ Google API konnte nicht geladen werden.\n\nBitte stelle sicher, dass du eine Internetverbindung hast.');
+                return;
+            }
+            
+            // Initialisiere Google Sign-In
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleCallback
+            });
+            
+            // Zeige das Google Sign-In Popup
+            google.accounts.id.prompt();
+        }
+
+        function handleGoogleCallback(response) {
+            // Dekodiere das JWT Token
+            const credential = response.credential;
+            const payload = parseJwt(credential);
+            
+            // Erstelle User Object
+            currentUser = {
+                name: payload.name,
+                email: payload.email,
+                photo: payload.picture,
+                mode: 'google'
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            loadUserData();
+            showApp();
+        }
+
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
         }
 
         function loginOffline() {
