@@ -28,6 +28,224 @@
             margin: 0 auto;
         }
 
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 250px 1fr 250px;
+                gap: 30px;
+            }
+
+            .container {
+                max-width: none;
+                padding: 0 30px;
+            }
+        }
+
+        .left-sidebar, .right-sidebar {
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .left-sidebar, .right-sidebar {
+                display: block;
+            }
+        }
+
+        .sidebar-section {
+            background: #242424;
+            border: 1px solid #3d3d3d;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-button {
+            width: 100%;
+            background: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            color: #e8e8e8;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-button:hover {
+            background: #353535;
+            border-color: #4d4d4d;
+        }
+
+        .sidebar-button.active {
+            background: #3d3d3d;
+            border-color: #4d4d4d;
+        }
+
+        .category-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .category-list-item:hover {
+            background: #2d2d2d;
+        }
+
+        .category-list-item.active {
+            background: #3d3d3d;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .stat-item:hover {
+            background: #353535;
+            border-color: #4d4d4d;
+        }
+
+        .stat-item.active {
+            background: #3d3d3d;
+            border-color: #4d4d4d;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #a8a8a8;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e8e8e8;
+        }
+
+        .stat-item.super-urgent .stat-value {
+            color: #ff6b6b;
+        }
+
+        .stat-item.urgent .stat-value {
+            color: #ffb86b;
+        }
+
+        .stat-item.moderate .stat-value {
+            color: #ffd96b;
+        }
+
+        .stat-item.chill .stat-value {
+            color: #88d498;
+        }
+
+        .template-item {
+            background: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .template-item:hover {
+            background: #353535;
+            border-color: #4d4d4d;
+        }
+
+        .template-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .template-item-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #e8e8e8;
+            margin-bottom: 6px;
+        }
+
+        .template-item-description {
+            font-size: 12px;
+            color: #888888;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .template-item-meta {
+            font-size: 11px;
+            color: #a8a8a8;
+        }
+
+        .template-manager-modal {
+            max-width: 700px;
+            max-height: 80vh;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header-with-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .modal-header-with-action h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .template-list-scrollable {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .template-list-scrollable::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .template-list-scrollable::-webkit-scrollbar-track {
+            background: #2d2d2d;
+            border-radius: 4px;
+        }
+
+        .template-list-scrollable::-webkit-scrollbar-thumb {
+            background: #4d4d4d;
+            border-radius: 4px;
+        }
+
+        .template-list-scrollable::-webkit-scrollbar-thumb:hover {
+            background: #5d5d5d;
+        }
+
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -137,6 +355,12 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+        }
+
+        @media (min-width: 1200px) {
+            .all-controls-wrapper {
+                display: none;
+            }
         }
 
         .divider {
@@ -296,6 +520,55 @@
         .subtask-field button {
             padding: 8px 12px;
             min-width: auto;
+        }
+
+        .weekdays-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .weekday-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            background: #2d2d2d;
+            border: 1px solid #3d3d3d;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .weekday-checkbox:hover {
+            background: #353535;
+        }
+
+        .weekday-checkbox input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-label span {
+            color: #e8e8e8;
+            font-size: 14px;
         }
 
         .tasks-container {
@@ -783,10 +1056,66 @@
             </div>
         </div>
 
-        <div class="tasks-container" id="tasksContainer">
-            <div class="empty-state">
-                <div class="empty-state-icon"></div>
-                <p>Keine Aufgaben vorhanden</p>
+        <div class="main-layout">
+            <!-- Left Sidebar -->
+            <div class="left-sidebar">
+                <div class="sidebar-section">
+                    <button class="sidebar-button" onclick="openModal()">Neue Aufgabe</button>
+                    <button class="sidebar-button" onclick="openTemplateManagerModal()">Aufgabenliste</button>
+                    <button class="sidebar-button" onclick="exportData()">Exportieren</button>
+                    <button class="sidebar-button" onclick="document.getElementById('importFile').click()">Importieren</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <div id="categorySidebar"></div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="tasks-container" id="tasksContainer">
+                    <div class="empty-state">
+                        <div class="empty-state-icon"></div>
+                        <p>Keine Aufgaben vorhanden</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="right-sidebar">
+                <div class="sidebar-section">
+                    <button class="sidebar-button active" id="sidebarActiveToggle" onclick="toggleActiveFilter()">Nur Aktive</button>
+                    <button class="sidebar-button" onclick="setSortMode('deadline')">Nach Deadline</button>
+                    <button class="sidebar-button" onclick="setSortMode('category')">Nach Kategorie</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="stat-item" onclick="filterByCompletion('open')">
+                        <span class="stat-label">Offen</span>
+                        <span class="stat-value" id="statOpen">0</span>
+                    </div>
+                    <div class="stat-item" onclick="filterByCompletion('done')">
+                        <span class="stat-label">Erledigt</span>
+                        <span class="stat-value" id="statDone">0</span>
+                    </div>
+                    <div style="margin: 15px 0; border-top: 1px solid #3d3d3d;"></div>
+                    <div class="stat-item super-urgent" onclick="filterByUrgency('super-urgent')">
+                        <span class="stat-label">Kritisch (≤1 Tag)</span>
+                        <span class="stat-value" id="statSuperUrgent">0</span>
+                    </div>
+                    <div class="stat-item urgent" onclick="filterByUrgency('urgent')">
+                        <span class="stat-label">Dringend (≤3 Tage)</span>
+                        <span class="stat-value" id="statUrgent">0</span>
+                    </div>
+                    <div class="stat-item moderate" onclick="filterByUrgency('moderate')">
+                        <span class="stat-label">Bald (≤7 Tage)</span>
+                        <span class="stat-value" id="statModerate">0</span>
+                    </div>
+                    <div class="stat-item chill" onclick="filterByUrgency('chill')">
+                        <span class="stat-label">Entspannt (>7 Tage)</span>
+                        <span class="stat-value" id="statChill">0</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -818,6 +1147,39 @@
                 <div class="form-group">
                     <label for="taskDeadline">Deadline</label>
                     <input type="date" id="taskDeadline" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDuration">Erwartete Bearbeitungszeit (Tage)</label>
+                    <input type="number" id="taskDuration" min="0" step="0.5" placeholder="z.B. 2">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="taskRepeat" onchange="toggleRepeatOptions()">
+                        <span>Wiederholen</span>
+                    </label>
+                </div>
+
+                <div class="form-group" id="repeatOptions" style="display: none;">
+                    <label for="repeatInterval">Intervall</label>
+                    <select id="repeatInterval">
+                        <option value="1">Jede Woche</option>
+                        <option value="2">Alle 2 Wochen</option>
+                        <option value="3">Alle 3 Wochen</option>
+                        <option value="4">Alle 4 Wochen</option>
+                    </select>
+
+                    <label style="margin-top: 10px;">Wochentage</label>
+                    <div class="weekdays-selector">
+                        <label class="weekday-checkbox"><input type="checkbox" value="1"> Mo</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="2"> Di</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="3"> Mi</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="4"> Do</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="5"> Fr</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="6"> Sa</label>
+                        <label class="weekday-checkbox"><input type="checkbox" value="0"> So</label>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -871,6 +1233,91 @@
         </div>
     </div>
 
+    <!-- Template Modal -->
+    <div class="modal" id="templateModal">
+        <div class="modal-content">
+            <h2 id="templateModalTitle">Aufgabe speichern</h2>
+            <form id="templateForm">
+                <div class="form-group">
+                    <label for="templateName">Template-Name</label>
+                    <input type="text" id="templateName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="templateDescription">Beschreibung</label>
+                    <textarea id="templateDescription"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="templateCategory">Kategorie</label>
+                    <select id="templateCategory" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="templateDuration">Erwartete Bearbeitungszeit (Tage)</label>
+                    <input type="number" id="templateDuration" min="0" step="0.5">
+                </div>
+
+                <div class="form-group">
+                    <label>Zeitraum</label>
+                    <div class="time-row">
+                        <div>
+                            <label for="templateStartTime">Startzeit</label>
+                            <input type="time" id="templateStartTime">
+                        </div>
+                        <div>
+                            <label for="templateEndTime">Endzeit</label>
+                            <input type="time" id="templateEndTime">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Unteraufgaben</label>
+                    <div id="templateSubtasksList" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;"></div>
+                    <button type="button" class="btn" onclick="addTemplateSubtaskField()" style="width: 100%;">+ Unteraufgabe hinzufügen</button>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="closeTemplateModal()">Abbrechen</button>
+                    <button type="submit" class="btn btn-primary">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Template Manager Modal -->
+    <div class="modal" id="templateManagerModal">
+        <div class="modal-content template-manager-modal">
+            <div class="modal-header-with-action">
+                <h2>Aufgabenliste</h2>
+                <button class="btn btn-primary" onclick="openTemplateModal()">Neue Aufgabe speichern</button>
+            </div>
+            <div id="templateList" class="template-list-scrollable">
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-primary" onclick="closeTemplateManagerModal()">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Load Modal (for deadline input) -->
+    <div class="modal" id="templateLoadModal">
+        <div class="modal-content" style="max-width: 400px;">
+            <h2 id="templateLoadTitle">Aufgabe aus Template erstellen</h2>
+            <div id="templateLoadContent">
+                <div class="form-group">
+                    <label for="templateLoadDeadline">Deadline</label>
+                    <input type="date" id="templateLoadDeadline" required>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn" onclick="closeTemplateLoadModal()">Abbrechen</button>
+                <button type="button" class="btn btn-primary" onclick="confirmTemplateLoad()">Erstellen</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Subtasks Modal -->
     <div class="modal" id="subtasksModal">
         <div class="subtasks-modal-content">
@@ -885,12 +1332,16 @@
 
     <script>
         let tasks = [];
+        let templates = [];
         let categories = ['Arbeit', 'Privat', 'Einkaufen', 'Projekt'];
         let currentFilter = 'all';
         let sortMode = 'deadline';
         let editingTaskId = null;
+        let editingTemplateId = null;
         let showOnlyActive = true;
         let openMenuId = null;
+        let urgencyFilter = null;
+        let currentTemplateToLoad = null;
 
         // Load tasks from localStorage
         function loadTasks() {
@@ -903,7 +1354,12 @@
             if (savedCategories) {
                 categories = JSON.parse(savedCategories);
             }
+            const savedTemplates = localStorage.getItem('templates');
+            if (savedTemplates) {
+                templates = JSON.parse(savedTemplates);
+            }
             updateCategorySelect();
+            updateCategorySidebar();
         }
 
         // Save tasks to localStorage
@@ -914,6 +1370,11 @@
         // Save categories to localStorage
         function saveCategories() {
             localStorage.setItem('categories', JSON.stringify(categories));
+        }
+
+        // Save templates to localStorage
+        function saveTemplates() {
+            localStorage.setItem('templates', JSON.stringify(templates));
         }
 
         // Open modal
@@ -934,8 +1395,25 @@
                     document.getElementById('taskDescription').value = task.description || '';
                     document.getElementById('taskCategory').value = task.category;
                     document.getElementById('taskDeadline').value = task.deadline;
+                    document.getElementById('taskDuration').value = task.duration || '';
                     document.getElementById('taskStartTime').value = task.startTime || '';
                     document.getElementById('taskEndTime').value = task.endTime || '';
+                    
+                    // Handle repeat settings
+                    if (task.repeat) {
+                        document.getElementById('taskRepeat').checked = true;
+                        document.getElementById('repeatInterval').value = task.repeat.interval;
+                        
+                        // Check weekday checkboxes
+                        document.querySelectorAll('.weekday-checkbox input[type="checkbox"]').forEach(cb => {
+                            cb.checked = task.repeat.weekdays.includes(parseInt(cb.value));
+                        });
+                        
+                        toggleRepeatOptions();
+                    } else {
+                        document.getElementById('taskRepeat').checked = false;
+                        document.getElementById('repeatOptions').style.display = 'none';
+                    }
                     
                     // Load existing subtasks
                     loadSubtasksToForm(taskId);
@@ -945,6 +1423,7 @@
             } else {
                 title.textContent = 'Neue Aufgabe';
                 form.reset();
+                document.getElementById('repeatOptions').style.display = 'none';
                 editingTaskId = null;
             }
 
@@ -963,14 +1442,29 @@
         document.getElementById('taskForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const isRepeating = document.getElementById('taskRepeat').checked;
+            let repeatData = null;
+            
+            if (isRepeating) {
+                const weekdayCheckboxes = document.querySelectorAll('.weekday-checkbox input[type="checkbox"]:checked');
+                const weekdays = Array.from(weekdayCheckboxes).map(cb => parseInt(cb.value));
+                
+                repeatData = {
+                    interval: parseInt(document.getElementById('repeatInterval').value),
+                    weekdays: weekdays
+                };
+            }
+
             const task = {
                 id: editingTaskId || Date.now(),
                 title: document.getElementById('taskTitle').value,
                 description: document.getElementById('taskDescription').value,
                 category: document.getElementById('taskCategory').value,
                 deadline: document.getElementById('taskDeadline').value,
+                duration: parseFloat(document.getElementById('taskDuration').value) || 0,
                 startTime: document.getElementById('taskStartTime').value,
                 endTime: document.getElementById('taskEndTime').value,
+                repeat: repeatData,
                 completed: false,
                 createdAt: editingTaskId ? tasks.find(t => t.id === editingTaskId).createdAt : new Date().toISOString()
             };
@@ -996,9 +1490,11 @@
                         description: '',
                         category: task.category,
                         deadline: task.deadline,
+                        duration: 0,
                         startTime: '',
                         endTime: '',
                         parentId: task.id,
+                        repeat: null,
                         completed: false,
                         createdAt: new Date().toISOString()
                     };
@@ -1009,8 +1505,16 @@
             saveTasks();
             renderTasks();
             updateFilters();
+            updateStats();
+            updateCategorySidebar();
             closeModal();
         });
+
+        function toggleRepeatOptions() {
+            const checkbox = document.getElementById('taskRepeat');
+            const options = document.getElementById('repeatOptions');
+            options.style.display = checkbox.checked ? 'block' : 'none';
+        }
 
         let subtaskCounter = 0;
 
@@ -1050,6 +1554,8 @@
                 task.completed = !task.completed;
                 saveTasks();
                 renderTasks();
+                updateStats();
+                updateCategorySidebar();
                 // Update subtasks modal if open
                 const modal = document.getElementById('subtasksModal');
                 if (modal.classList.contains('active')) {
@@ -1168,6 +1674,8 @@
                 saveTasks();
                 renderTasks();
                 updateFilters();
+                updateStats();
+                updateCategorySidebar();
             }
         }
 
@@ -1196,6 +1704,11 @@
             // Filter by active status
             if (showOnlyActive) {
                 filteredTasks = filteredTasks.filter(t => !t.completed);
+            }
+
+            // Filter by urgency if selected
+            if (urgencyFilter) {
+                filteredTasks = filteredTasks.filter(t => calculateUrgency(t) === urgencyFilter);
             }
 
             // Exclude subtasks from main list (they'll be shown under their parents)
@@ -1492,9 +2005,417 @@
             }
         });
 
+        // Filter by completion status
+        function filterByCompletion(status) {
+            if (status === 'open') {
+                showOnlyActive = true;
+                document.getElementById('activeToggle').classList.add('active');
+                document.getElementById('activeToggle').textContent = 'Nur Aktive';
+            } else {
+                showOnlyActive = false;
+                document.getElementById('activeToggle').classList.remove('active');
+                document.getElementById('activeToggle').textContent = 'Alle';
+            }
+            urgencyFilter = null;
+            currentFilter = 'all';
+            
+            document.querySelectorAll('.stat-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            renderTasks();
+        }
+
+        // Template Modal Functions
+        let templateSubtaskCounter = 0;
+
+        function openTemplateModal(templateId = null) {
+            const modal = document.getElementById('templateModal');
+            const form = document.getElementById('templateForm');
+            const title = document.getElementById('templateModalTitle');
+            
+            // Populate category select
+            document.getElementById('templateCategory').innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            
+            document.getElementById('templateSubtasksList').innerHTML = '';
+            templateSubtaskCounter = 0;
+            
+            if (templateId) {
+                const template = templates.find(t => t.id === templateId);
+                if (template) {
+                    title.textContent = 'Aufgabe bearbeiten';
+                    document.getElementById('templateName').value = template.name;
+                    document.getElementById('templateDescription').value = template.description || '';
+                    document.getElementById('templateCategory').value = template.category;
+                    document.getElementById('templateDuration').value = template.duration || '';
+                    document.getElementById('templateStartTime').value = template.startTime || '';
+                    document.getElementById('templateEndTime').value = template.endTime || '';
+                    
+                    if (template.subtasks) {
+                        template.subtasks.forEach(st => addTemplateSubtaskField(st));
+                    }
+                    
+                    editingTemplateId = templateId;
+                }
+            } else {
+                title.textContent = 'Aufgabe speichern';
+                form.reset();
+                editingTemplateId = null;
+            }
+            
+            // Close template manager if open
+            document.getElementById('templateManagerModal').classList.remove('active');
+            
+            modal.classList.add('active');
+        }
+
+        function closeTemplateModal() {
+            document.getElementById('templateModal').classList.remove('active');
+            document.getElementById('templateForm').reset();
+            editingTemplateId = null;
+            
+            // Reopen template manager if it was open
+            if (document.getElementById('templateManagerModal').dataset.wasOpen === 'true') {
+                openTemplateManagerModal();
+                delete document.getElementById('templateManagerModal').dataset.wasOpen;
+            }
+        }
+
+        function addTemplateSubtaskField(title = '') {
+            const list = document.getElementById('templateSubtasksList');
+            const id = `template-subtask-${templateSubtaskCounter++}`;
+            
+            const fieldHtml = `
+                <div class="subtask-field" id="field-${id}">
+                    <input type="text" class="template-subtask-input" placeholder="Unteraufgabe" value="${title}">
+                    <button type="button" class="btn" onclick="document.getElementById('field-${id}').remove()">Löschen</button>
+                </div>
+            `;
+            
+            list.insertAdjacentHTML('beforeend', fieldHtml);
+        }
+
+        // Handle template form submission
+        document.getElementById('templateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const subtaskInputs = document.querySelectorAll('.template-subtask-input');
+            const subtasks = [];
+            subtaskInputs.forEach(input => {
+                const subtaskTitle = input.value.trim();
+                if (subtaskTitle) {
+                    subtasks.push(subtaskTitle);
+                }
+            });
+            
+            const template = {
+                id: editingTemplateId || Date.now(),
+                name: document.getElementById('templateName').value,
+                description: document.getElementById('templateDescription').value,
+                category: document.getElementById('templateCategory').value,
+                duration: parseFloat(document.getElementById('templateDuration').value) || 0,
+                startTime: document.getElementById('templateStartTime').value,
+                endTime: document.getElementById('templateEndTime').value,
+                subtasks: subtasks,
+                createdAt: editingTemplateId ? templates.find(t => t.id === editingTemplateId).createdAt : new Date().toISOString()
+            };
+            
+            if (editingTemplateId) {
+                const index = templates.findIndex(t => t.id === editingTemplateId);
+                templates[index] = template;
+            } else {
+                templates.push(template);
+            }
+            
+            saveTemplates();
+            
+            // Mark that template manager should reopen
+            document.getElementById('templateManagerModal').dataset.wasOpen = 'true';
+            
+            closeTemplateModal();
+        });
+
+        // Template Manager Modal
+        function openTemplateManagerModal() {
+            const modal = document.getElementById('templateManagerModal');
+            renderTemplateList();
+            modal.classList.add('active');
+        }
+
+        function closeTemplateManagerModal() {
+            document.getElementById('templateManagerModal').classList.remove('active');
+        }
+
+        function renderTemplateList() {
+            const list = document.getElementById('templateList');
+            
+            if (templates.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #888888; padding: 20px;">Keine gespeicherten Aufgaben vorhanden</p>';
+                return;
+            }
+            
+            list.innerHTML = templates.map(template => `
+                <div class="template-item" data-template-id="${template.id}">
+                    <div class="template-item-header">
+                        <div style="flex: 1; cursor: pointer;" onclick="loadTemplate(${template.id})">
+                            <div class="template-item-title">${template.name}</div>
+                            ${template.description ? `<div class="template-item-description">${template.description}</div>` : ''}
+                            <div class="template-item-meta">
+                                Kategorie: ${template.category} | 
+                                ${template.subtasks && template.subtasks.length > 0 ? `${template.subtasks.length} Unteraufgaben` : 'Keine Unteraufgaben'}
+                            </div>
+                        </div>
+                        <div class="task-menu-trigger" onclick="toggleTemplateMenu(${template.id}, event)">
+                            <span class="menu-dots">⋯</span>
+                        </div>
+                    </div>
+                    <div class="task-menu" id="template-menu-${template.id}" style="display: none;">
+                        <button class="task-menu-btn" onclick="openTemplateModal(${template.id}); event.stopPropagation();">Bearbeiten</button>
+                        <button class="task-menu-btn task-menu-delete" onclick="deleteTemplate(${template.id}); event.stopPropagation();">Löschen</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let openTemplateMenuId = null;
+
+        function toggleTemplateMenu(templateId, event) {
+            event.stopPropagation();
+            const menuId = `template-menu-${templateId}`;
+            const menu = document.getElementById(menuId);
+            
+            // Close other menus
+            if (openTemplateMenuId && openTemplateMenuId !== menuId) {
+                const oldMenu = document.getElementById(openTemplateMenuId);
+                if (oldMenu) oldMenu.style.display = 'none';
+            }
+            
+            // Toggle current menu
+            if (menu.style.display === 'none' || !menu.style.display) {
+                menu.style.display = 'block';
+                openTemplateMenuId = menuId;
+            } else {
+                menu.style.display = 'none';
+                openTemplateMenuId = null;
+            }
+        }
+
+        // Close template menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (openTemplateMenuId && !event.target.closest('.task-menu') && !event.target.closest('.task-menu-trigger')) {
+                const menu = document.getElementById(openTemplateMenuId);
+                if (menu) menu.style.display = 'none';
+                openTemplateMenuId = null;
+            }
+        });
+
+        function deleteTemplate(templateId) {
+            if (confirm('Möchtest du diese gespeicherte Aufgabe wirklich löschen?')) {
+                templates = templates.filter(t => t.id !== templateId);
+                saveTemplates();
+                renderTemplateList();
+            }
+        }
+
+        // Load Template
+        function loadTemplate(templateId) {
+            currentTemplateToLoad = templates.find(t => t.id === templateId);
+            if (!currentTemplateToLoad) return;
+            
+            document.getElementById('templateLoadTitle').textContent = `Aufgabe erstellen: ${currentTemplateToLoad.name}`;
+            document.getElementById('templateLoadModal').classList.add('active');
+        }
+
+        function closeTemplateLoadModal() {
+            document.getElementById('templateLoadModal').classList.remove('active');
+            currentTemplateToLoad = null;
+        }
+
+        function confirmTemplateLoad() {
+            if (!currentTemplateToLoad) return;
+            
+            const deadline = document.getElementById('templateLoadDeadline').value;
+            if (!deadline) {
+                alert('Bitte eine Deadline auswählen');
+                return;
+            }
+            
+            // Create main task from template
+            const taskId = Date.now();
+            const task = {
+                id: taskId,
+                title: currentTemplateToLoad.name,
+                description: currentTemplateToLoad.description || '',
+                category: currentTemplateToLoad.category,
+                deadline: deadline,
+                duration: currentTemplateToLoad.duration || 0,
+                startTime: currentTemplateToLoad.startTime || '',
+                endTime: currentTemplateToLoad.endTime || '',
+                repeat: null,
+                completed: false,
+                createdAt: new Date().toISOString()
+            };
+            
+            tasks.push(task);
+            
+            // Create subtasks if any
+            if (currentTemplateToLoad.subtasks && currentTemplateToLoad.subtasks.length > 0) {
+                currentTemplateToLoad.subtasks.forEach(subtaskTitle => {
+                    const subtask = {
+                        id: Date.now() + Math.random(),
+                        title: subtaskTitle,
+                        description: '',
+                        category: task.category,
+                        deadline: task.deadline,
+                        duration: 0,
+                        startTime: '',
+                        endTime: '',
+                        parentId: taskId,
+                        repeat: null,
+                        completed: false,
+                        createdAt: new Date().toISOString()
+                    };
+                    tasks.push(subtask);
+                });
+            }
+            
+            saveTasks();
+            renderTasks();
+            updateStats();
+            updateCategorySidebar();
+            closeTemplateLoadModal();
+            closeTemplateManagerModal();
+        }
+
+        // Close modals on outside click
+        document.getElementById('templateModal').addEventListener('click', function(e) {
+            if (e.target === this) closeTemplateModal();
+        });
+        
+        document.getElementById('templateManagerModal').addEventListener('click', function(e) {
+            if (e.target === this) closeTemplateManagerModal();
+        });
+        
+        document.getElementById('templateLoadModal').addEventListener('click', function(e) {
+            if (e.target === this) closeTemplateLoadModal();
+        });
+
         // Initialize
         loadTasks();
         updateFilters();
+        updateStats();
+
+        // Calculate urgency based on duration and deadline
+        function calculateUrgency(task) {
+            if (!task.duration || task.duration === 0) {
+                // Fallback to deadline-only logic
+                const deadline = new Date(task.deadline);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const daysUntil = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+                
+                if (daysUntil <= 1) return 'super-urgent';
+                if (daysUntil <= 3) return 'urgent';
+                if (daysUntil <= 7) return 'moderate';
+                return 'chill';
+            }
+            
+            // Calculate time buffer (days until deadline - expected duration)
+            const deadline = new Date(task.deadline);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const daysUntil = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
+            const buffer = daysUntil - task.duration;
+            
+            if (buffer <= 1) return 'super-urgent';
+            if (buffer <= 3) return 'urgent';
+            if (buffer <= 7) return 'moderate';
+            return 'chill';
+        }
+
+        // Update stats
+        function updateStats() {
+            const openTasks = tasks.filter(t => !t.completed && !t.parentId).length;
+            const completedTasks = tasks.filter(t => t.completed && !t.parentId).length;
+            
+            const activeTasks = tasks.filter(t => !t.completed && !t.parentId);
+            const superUrgent = activeTasks.filter(t => calculateUrgency(t) === 'super-urgent').length;
+            const urgent = activeTasks.filter(t => calculateUrgency(t) === 'urgent').length;
+            const moderate = activeTasks.filter(t => calculateUrgency(t) === 'moderate').length;
+            const chill = activeTasks.filter(t => calculateUrgency(t) === 'chill').length;
+            
+            document.getElementById('statTotal').textContent = `${openTasks} / ${completedTasks}`;
+            document.getElementById('statSuperUrgent').textContent = superUrgent;
+            document.getElementById('statUrgent').textContent = urgent;
+            document.getElementById('statModerate').textContent = moderate;
+            document.getElementById('statChill').textContent = chill;
+        }
+
+        // Update category sidebar
+        function updateCategorySidebar() {
+            const sidebar = document.getElementById('categorySidebar');
+            if (!sidebar) return;
+            
+            sidebar.innerHTML = `
+                <div class="category-list-item ${currentFilter === 'all' ? 'active' : ''}" onclick="filterByCategorySidebar('all')">
+                    <span>Alle Kategorien</span>
+                    <span>${tasks.filter(t => !t.parentId).length}</span>
+                </div>
+            ` + categories.map(cat => {
+                const count = tasks.filter(t => t.category === cat && !t.parentId).length;
+                return `
+                    <div class="category-list-item ${currentFilter === cat ? 'active' : ''}" onclick="filterByCategorySidebar('${cat}')">
+                        <span>${cat}</span>
+                        <span>${count}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter by category from sidebar
+        function filterByCategorySidebar(category) {
+            currentFilter = category;
+            urgencyFilter = null;
+            
+            // Update category filter select
+            const select = document.getElementById('categoryFilter');
+            if (select) select.value = category;
+            
+            // Update sidebar active states
+            document.querySelectorAll('.category-list-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.stat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            renderTasks();
+            updateCategorySidebar();
+        }
+
+        // Filter by urgency
+        function filterByUrgency(urgency) {
+            urgencyFilter = urgency === 'all' ? null : urgency;
+            currentFilter = 'all';
+            
+            // Update select
+            const select = document.getElementById('categoryFilter');
+            if (select) select.value = 'all';
+            
+            // Update sidebar active states
+            document.querySelectorAll('.stat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.category-list-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (urgency !== 'all') {
+                event.currentTarget.classList.add('active');
+            }
+            
+            renderTasks();
+            updateCategorySidebar();
+        }
     </script>
 </body>
 </html>
