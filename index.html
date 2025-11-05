@@ -1869,44 +1869,60 @@
         }
 
         // Export data
-        function exportData() {
-            const dataStr = JSON.stringify(tasks, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `todo-export-${new Date().toISOString().split('T')[0]}.json`;
-            link.click();
-            URL.revokeObjectURL(url);
+       function exportData() {
+    const data = {
+        tasks: tasks,
+        categories: categories,
+        templates: templates
+    };
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `todo-export-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+}
+
         }
 
         // Import data
-        function importData(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const imported = JSON.parse(e.target.result);
-                        if (Array.isArray(imported)) {
-                            if (confirm('Möchtest du die importierten Aufgaben zu den bestehenden hinzufügen oder diese ersetzen?\n\nOK = Hinzufügen\nAbbrechen = Ersetzen')) {
-                                tasks = [...tasks, ...imported];
-                            } else {
-                                tasks = imported;
-                            }
-                            saveTasks();
-                            renderTasks();
-                            updateFilters();
-                            alert('Import erfolgreich!');
-                        }
-                    } catch (error) {
-                        alert('Fehler beim Import. Bitte überprüfe die Datei.');
+      function importData(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const imported = JSON.parse(e.target.result);
+                if (imported.tasks && Array.isArray(imported.tasks)) {
+                    if (confirm('Möchtest du die importierten Daten zu den bestehenden hinzufügen oder diese ersetzen?\n\nOK = Hinzufügen\nAbbrechen = Ersetzen')) {
+                        tasks = [...tasks, ...imported.tasks];
+                        categories = [...new Set([...categories, ...(imported.categories || [])])];
+                        templates = [...templates, ...(imported.templates || [])];
+                    } else {
+                        tasks = imported.tasks;
+                        categories = imported.categories || [];
+                        templates = imported.templates || [];
                     }
-                };
-                reader.readAsText(file);
+                    saveTasks();
+                    saveCategories();
+                    saveTemplates();
+                    renderTasks();
+                    updateFilters();
+                    updateCategorySidebar();
+                    alert('Import erfolgreich!');
+                } else {
+                    alert('Fehlerhafte Datei. Keine Aufgaben gefunden.');
+                }
+            } catch (error) {
+                alert('Fehler beim Import. Bitte überprüfe die Datei.');
             }
-            event.target.value = '';
-        }
+        };
+        reader.readAsText(file);
+    }
+    event.target.value = '';
+}
 
         // Close modal on outside click
         document.getElementById('taskModal').addEventListener('click', function(e) {
